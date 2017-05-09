@@ -1,0 +1,115 @@
+@CHARSET "UTF-8";
+
+.navbar-vertical-left {
+    color: #999999;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    overflow: auto;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    background-color: #393D49;/*222222;#2561A0;*/
+    z-index: 999;
+    /*border-right: 1px silver solid;*/
+    /*border-bottom: 1px silver solid;*/
+    /* color: #000; */
+}
+.navbar-vertical-left a{
+    color: #999999;
+}
+.navbar-vertical-left a:hover{
+    color: #fff;
+}
+@media ( max-width: 767px) {
+    .navbar-vertical-left {
+        /*background-color: #fff; */
+        top: 0;
+        bottom: auto;
+        height: auto;
+        width: 100%;
+        position: fixed;
+    }
+
+}
+
+.sidebar-nav {
+    font: 14px/1.0 "Microsoft Yahei", sans-serif, "Arial", "Helvetica Neue", Helvetica,
+    "Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei";
+    /*background-color: #FFFFFF;*/
+    text-align: center;
+    height: 100%;
+    padding: 0;
+    z-index: 10;
+}
+
+.sidebar-nav .navbar ul,.sidebar-nav .navbar li ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav .navbar li,.sidebar-nav .navbar li ul li {
+    margin-top: 0;
+}
+
+/*.sidebar-nav .navbar li a,.sidebar-nav .navbar li ul li a {
+    COLOR: #999999;
+}*/
+
+.sidebar-nav .navbar li a:hover,.sidebar-nav .navbar li ul li a:hover {
+    background-color: #31343B;
+}
+
+.sidebar-nav .nav-custom {
+    margin-bottom: 20px;
+    margin-left: 0;
+    list-style: none
+}
+
+.sidebar-nav .nav-custom > li > a {
+    display: block;
+    text-decoration: none;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+.sidebar-nav .nav-custom > li >div>ul>li > a{
+    background-color: #40485A;
+    /*color: #999999;*/
+    display: block;
+    text-decoration: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 13px;
+}
+.sidebar-nav .nav-custom > li > a:hover {
+    text-decoration: none;
+    background-color: #31343B;/* #003366*/
+}
+
+/* make sidebar nav vertical */
+    @media ( min-width: 768px) {
+        .sidebar-nav .navbar .navbar-collapse {
+            padding: 0;
+            max-height: none;
+        }
+
+    .sidebar-nav .navbar ul {
+        float: none;
+        display: block;
+        list-style: none;
+        padding: 0;
+    }
+
+    .sidebar-nav .navbar li {
+        float: none;
+        display: block;
+    }
+
+    .sidebar-nav .navbar li a {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+}

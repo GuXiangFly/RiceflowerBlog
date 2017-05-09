@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guxiang.dao.ICategoryDao">
+
+    <resultMap id="CategoryMap" type="com.guxiang.pojo.Category">
+        <result property="id" column="id"/>
+        <result property="description" column="description"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="status" column="status"/>
+    </resultMap>
+    <resultMap id="CategoryVoMap" type="com.guxiang.vo.CategoryVo">
+        <result property="id" column="id"/>
+        <result property="description" column="description"/>
+        <result property="name" column="name"/>
+        <result property="counts" column="article_counts"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_category(name,description,status,code)
+        VALUES (#{name,jdbcType=VARCHAR},#{description,jdbcType=VARCHAR},#{status,jdbcType=TINYINT},#{code,jdbcType=VARCHAR})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM t_category
+        <if test="ids!=null">
+            <if test="ids.size()==0">
+                WHERE id = 0
+            </if>
+            <if test="ids.size()!=0">
+                WHERE id IN
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item,jdbcType=INTEGER}
+                </foreach>
+            </if>
+        </if>
+    </delete>
+
+    <delete id="deleteById">
+        DELETE FROM t_category
+        WHERE id = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <update id="update">
+        UPDATE t_category
+        SET
+          name=#{name,jdbcType=VARCHAR},
+          description = #{description,jdbcType=VARCHAR},
+          code =#{code,jdbcType=VARCHAR},
+          status=#{status,jdbcType=TINYINT}
+        WHERE id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectById" resultMap="CategoryMap">
+        SELECT * FROM t_category
+        WHERE id=#{id,jdbcType=INTEGER}
+        <if test="status!=null and status==true">
+            and status = #{status,jdbcType=TINYINT}
+        </if>
+    </select>
+
+    <select id="selectBy" resultMap="CategoryMap">
+        SELECT * FROM t_category
+        <where>
+            <if test="status!=null and status==true">
+                status = #{status,jdbcType=TINYINT}
+            </if>
+        </where>
+        ORDER BY  id
+    </select>
+    <select id="selectByCode" resultMap="CategoryMap">
+        SELECT * FROM t_category
+        WHERE
+            code = #{code,jdbcType=VARCHAR}
+        <if test="status!=null and status==true">
+            and status = #{status,jdbcType=TINYINT}
+        </if>
+        limit 1
+    </select>
+    <select id="selectByName" resultMap="CategoryMap">
+    	SELECT * FROM t_category
+        WHERE
+            name = #{name,jdbcType=VARCHAR}
+            <if test="status!=null and status==true">
+              and status = #{status,jdbcType=TINYINT}
+            </if>
+        limit 1
+    </select>
+
+    <select id="selectVoBy" resultMap="CategoryVoMap">
+        SELECT t1.*, (
+        select count(*)
+        from t_article t2
+        where t2.category_ids = t1.id
+            <if test="articleStatus!=null">
+                and t2.status = #{articleStatus,jdbcType=INTEGER}
+            </if>
+        ) as article_counts
+        FROM t_category t1
+        <where>
+            <if test="status!=null and status==true">
+                status = #{status,jdbcType=TINYINT}
+            </if>
+        </where>
+        ORDER BY article_counts desc
+    </select>
+
+
+</mapper>

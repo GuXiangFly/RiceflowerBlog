@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guxiang.dao.IArticleDao">
+
+	<resultMap id="ArticleMap" type="com.guxiang.pojo.Article">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="summary" column="summary" />
+		<result property="content" column="content" />
+		<result property="categoryIds" column="category_ids" />
+		<result property="tagIds" column="tag_ids" />
+		<result property="status" column="status" />
+		<result property="writeTime" column="write_time" />
+		<result property="pubTime" column="pub_time" />
+        <result property="code" column="code" />
+	</resultMap>
+	<resultMap id="ArticleVoMap" type="com.guxiang.vo.ArticleVo">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="summary" column="summary" />
+		<result property="content" column="content" />
+		<result property="categoryIds" column="category_ids" />
+		<result property="categoryName" column="category_name" />
+        <result property="categoryCode" column="category_code"/>
+		<result property="tagIds" column="tag_ids" />
+		<result property="status" column="status" />
+		<result property="writeTime" column="write_time" />
+		<result property="pubTime" column="pub_time" />
+        <result property="code" column="code" />
+	</resultMap>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT
+		INTO
+		t_article(title,code,summary,content,category_ids,tag_ids,status,write_time,pub_time)
+		VALUES
+		(#{title,jdbcType=VARCHAR},
+		#{code,jdbcType=VARCHAR},
+		#{summary,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR},
+		#{categoryIds,jdbcType=INTEGER},
+		#{tagIds,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER},
+		#{writeTime,jdbcType=TIMESTAMP},
+		#{pubTime,jdbcType=TIMESTAMP})
+	</insert>
+
+	<delete id="delete">
+		DELETE FROM t_article
+		WHERE
+		id=#{id,jdbcType=INTEGER}
+	</delete>
+
+	<update id="update">
+		UPDATE t_article
+		SET
+		title=#{title,jdbcType=VARCHAR},
+		summary=#{summary,jdbcType=VARCHAR},
+		content=#{content,jdbcType=VARCHAR},
+		category_ids=#{categoryIds,jdbcType=INTEGER},
+		tag_ids=#{tagIds,jdbcType=VARCHAR},
+		status=#{status,jdbcType=INTEGER},
+		write_time=#{writeTime,jdbcType=TIMESTAMP},
+		pub_time=#{pubTime,jdbcType=TIMESTAMP}
+		WHERE id =
+		#{id,jdbcType=INTEGER}
+	</update>
+    <update id="updateHits">
+        UPDATE t_article
+        SET
+        hits=#{hits,jdbcType=INTEGER}
+        WHERE id =
+        #{id,jdbcType=INTEGER}
+    </update>
+	<update id="updateCategoryId">
+		UPDATE t_article
+		SET
+		category_ids=#{newCategoryId,jdbcType=INTEGER}
+		WHERE category_ids =#{oldCategoryId,jdbcType=INTEGER}
+	</update>
+	<update id="updateStatus">
+		UPDATE t_article
+		SET
+		status=#{status,jdbcType=INTEGER}
+		WHERE id =#{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectVoById" resultMap="ArticleVoMap">
+		SELECT t1.*,t2.name as
+		category_name
+		FROM t_article t1
+		LEFT JOIN t_category t2
+		ON
+		t1.category_ids = t2.id
+		WHERE
+		t1.id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectById" resultMap="ArticleMap">
+		SELECT *
+		FROM t_article
+		WHERE
+		id
+		= #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectVoByTitle" resultMap="ArticleVoMap">
+		SELECT t1.*,t2.name as
+		category_name
+		FROM t_article t1
+		LEFT JOIN t_category t2
+		ON
+		t1.category_ids = t2.id
+		WHERE
+		t1.title = #{title,jdbcType=VARCHAR}
+		AND
+		t1.status = #{status,jdbcType=VARCHAR}
+		AND
+		t1.category_ids = t2.id
+	</select>
+    <select id="selectVoByCode" resultMap="ArticleVoMap">
+        SELECT t1.*,t2.name as category_name,t2.code as category_code
+        FROM t_article t1
+        LEFT JOIN t_category t2
+        ON
+        t1.category_ids = t2.id
+        WHERE
+        t1.code = #{code,jdbcType=VARCHAR}
+        AND
+        t1.status = #{status,jdbcType=VARCHAR}
+        AND
+        t1.category_ids = t2.id
+    </select>
+	<select id="selectBy" resultMap="ArticleMap">
+		SELECT *
+		FROM t_article
+		<where>
+			<if test="article.title!=null">
+				AND title like CONCAT(CONCAT('%',
+				#{article.title,jdbcType=VARCHAR}),
+				'%')
+			</if>
+			<if test="article.categoryIds!=null">
+				AND category_ids =
+				#{article.categoryIds,jdbcType=INTEGER}
+			</if>
+			<if test="article.tagIds!=null">
+				AND tag_ids like CONCAT(CONCAT('%',
+				#{article.tagIds,jdbcType=VARCHAR}), '%')
+			</if>
+			<if test="article.status!=null">
+				AND status =#{article.status,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY write_time DESC
+		<if
+			test="pageConfig!=null and pageConfig.pageIndex!=null and pageConfig.pageSize!=null">
+			LIMIT
+			#{pageConfig.pageIndex,jdbcType=INTEGER},#{pageConfig.pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+	<select id="selectCountBy" resultType="Integer">
+		SELECT COUNT(*)
+		FROM t_article
+		<where>
+			<if test="article.title!=null">
+				AND title like CONCAT(CONCAT('%',
+				#{article.title,jdbcType=VARCHAR}),
+				'%')
+			</if>
+			<if test="article.categoryIds!=null">
+				AND category_ids =
+				#{article.categoryIds,jdbcType=INTEGER}
+			</if>
+			<if test="article.tagIds!=null">
+				AND tag_ids like CONCAT(CONCAT('%',
+				#{article.tagIds,jdbcType=VARCHAR}), '%')
+			</if>
+			<if test="article.status!=null">
+				AND status =#{article.status,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectVoBy" resultMap="ArticleVoMap">
+		SELECT t1.*,t2.name as category_name,t2.code as category_code
+		FROM t_article t1
+		LEFT JOIN
+		t_category t2
+		ON t1.category_ids = t2.id
+		<where>
+			<if test="article.title!=null">
+				AND t1.title like CONCAT(CONCAT('%',
+				#{article.title,jdbcType=VARCHAR}), '%')
+			</if>
+			<if test="article.categoryIds!=null">
+				AND t1.category_ids =
+				#{article.categoryIds,jdbcType=INTEGER}
+			</if>
+			<if test="article.tagIds!=null">
+				AND t1.tag_ids like CONCAT(CONCAT('%',
+				#{article.tagIds,jdbcType=VARCHAR}), '%')
+			</if>
+			<if test="article.status!=null">
+				AND t1.status =#{article.status,jdbcType=VARCHAR}
+			</if>
+		</where>
+		ORDER BY t1.id DESC
+		<if
+			test="pageConfig!=null and pageConfig.pageIndex!=null and pageConfig.pageSize!=null">
+			LIMIT
+			#{pageConfig.pageIndex,jdbcType=INTEGER},#{pageConfig.pageSize,jdbcType=INTEGER}
+		</if>
+	</select>
+	<select id="selectNextOrPreVoBy" resultMap="ArticleMap">
+		select t1.id,t1.title,t1.code
+		from t_article t1
+		<where>
+			<if test="article.status!=null">
+				AND t1.status =#{article.status,jdbcType=VARCHAR}
+			</if>
+			<if test="nextOrPreVo != true">
+				AND t1.pub_time > #{article.pubTime,jdbcType=TIMESTAMP}
+			</if>
+			<if test="nextOrPreVo == true">
+				AND #{article.pubTime,jdbcType=TIMESTAMP} > t1.pub_time
+			</if>
+		</where>
+		order by t1.pub_time
+		<if test="nextOrPreVo == true">
+			desc
+		</if>
+		limit 1
+	</select>
+	<resultMap type="com.guxiang.vo.ArchiveVo"  id="ArchiveVoMap">
+		<result property="name" column="year_name" />
+		<result property="counts" column="year_counts" />
+		<collection property="childArchive" column="child_archive" ofType="com.guxiang.vo.ArchiveVo">
+			<result property="name" column="month_name" />
+			<result property="counts" column="month_counts" />
+		</collection>
+	</resultMap>
+	
+	<select id="selectAllArchives" resultMap="ArchiveVoMap">
+		
+		select 
+			tt1.year_name,
+			tt1.year_counts,
+			tt2.month_name,
+			tt2.month_counts
+		from
+		(
+				select 
+					count(*) as year_counts, 
+					DATE_FORMAT(t.pub_time, #{archive_type_year,jdbcType=VARCHAR}) as year_name
+							from t_article as t 
+							where 
+								t.pub_time != ''	
+									and t.status=1
+							GROUP BY year_name
+							order by t.pub_time DESC
+		) tt1
+		left JOIN 
+		(
+				select
+					count(*) as month_counts, 
+					DATE_FORMAT(tt.pub_time, '%Y年') as year_name,
+					DATE_FORMAT(tt.pub_time, #{archive_type_year_month,jdbcType=VARCHAR}) as month_name
+								from t_article as tt
+						where 
+					tt.pub_time != '' 
+					and tt.status=1 
+						GROUP BY month_name 
+						order by month_name DESC	
+		) tt2
+		on tt2.year_name = tt1.year_name
+	</select>
+	
+	<select id="selectArchiveArticles" resultMap="ArticleMap">
+		select t.*
+			from t_article as t 
+			where 
+				DATE_FORMAT(t.pub_time,  #{archive_type,jdbcType=VARCHAR}) = #{month_name,jdbcType=VARCHAR}
+				<if test="status!=null">
+					and status=#{status,jdbcType=INTEGER}  
+				</if>
+			order by t.pub_time DESC;
+	</select>
+</mapper>

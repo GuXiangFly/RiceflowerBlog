@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guxiang.dao.IMessageDao">
+
+    <resultMap id="MessageMap" type="com.guxiang.pojo.Message">
+        <result property="id" column="id"/>
+        <result property="articleId" column="article_id"/>
+        <result property="blockId" column="block_id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="content" column="content"/>
+        <result property="userType" column="user_type"/>
+        <result property="authorId" column="author_id"/>
+        <result property="pubTime" column="pub_time"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_message(article_id,block_id,parent_id,content,user_type,author_id,pub_time)
+        VALUES (#{articleId,jdbcType=INTEGER},#{blockId,jdbcType=INTEGER},#{parentId,jdbcType=INTEGER},#{content,jdbcType=VARCHAR},#{userType,jdbcType=INTEGER},#{authorId,jdbcType=INTEGER},#{pubTime,jdbcType=TIMESTAMP})
+    </insert>
+
+    <delete id="delete">
+        DELETE FROM t_message
+        <if test="ids!=null">
+            <if test="ids.size()==0">
+                WHERE id = 0
+            </if>
+            <if test="ids.size()!=0">
+                WHERE id IN
+                <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+                    #{item,jdbcType=INTEGER}
+                </foreach>
+            </if>
+        </if>
+    </delete>
+
+    <delete id="deleteBy">
+        DELETE FROM t_message
+        WHERE parent_id = #{parentId,jdbcType=INTEGER}
+        AND block_id = #{blockId,jdbcType=INTEGER}
+    </delete>
+
+
+    <delete id="deleteByArticleId">
+        DELETE FROM t_message
+        WHERE article_id = #{articleId,jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectById" resultMap="MessageMap">
+        SELECT * FROM t_message
+        WHERE id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByArticleId" resultMap="MessageMap">
+        SELECT * FROM t_message
+        <where>
+            article_id = #{articleId,jdbcType=INTEGER}
+            <if test="parentId!=null">
+                AND parent_id = #{parentId,jdbcType=INTEGER}
+            </if>
+            <if test="blockId!=null">
+                AND block_id = #{blockId,jdbcType=INTEGER}
+            </if>
+        </where>
+        <if test="reverseOrder==1">
+            ORDER BY id DESC
+        </if>
+        <if test="reverseOrder==0">
+            ORDER BY id
+        </if>
+    </select>
+
+    <select id="selectCountByArticleId" resultType="INTEGER">
+        SELECT COUNT(*) FROM t_message
+        where article_id = #{articleId,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectCountBy" resultType="INTEGER">
+        SELECT count(*) FROM t_message
+        WHERE parent_id = #{parentId,jdbcType=INTEGER}
+        AND block_id = #{blockId,jdbcType=INTEGER}
+    </select>
+
+    <resultMap id="ArticleMessageVoMap" type="com.guxiang.vo.ArticleMessageVo">
+    </resultMap>
+
+    <select id="selectArticleMessageVo" resultMap="ArticleMessageVoMap">
+        select tm1.id as messageId,tm1.content as messageContent,tm1.support_count as messageSupportCount,tm1.pub_time as messagePubTime,tg.nickname as guestNickname,tg.personal_website as guestWebsite
+        from
+        (
+        select tm.*
+        from t_message tm
+        where article_id = #{articleId,jdbcType=INTEGER}
+        ) as tm1
+        left JOIN t_guest tg
+        on tm1.author_id = tg.id
+        <if test="reverseOrder==1">
+            ORDER BY messageId DESC
+        </if>
+        <if test="reverseOrder==0">
+            ORDER BY messageId
+        </if>
+    </select>
+</mapper>
