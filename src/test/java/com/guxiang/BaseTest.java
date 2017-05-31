@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author fireoct
- * @email panhainan@yeah.net
  * @date 2016-09-09
  */
 @RunWith(SpringJUnit4ClassRunner.class)

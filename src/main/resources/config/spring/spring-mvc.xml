@@ -85,6 +85,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
           p:defaultEncoding="UTF-8" p:maxUploadSize="5400000" p:uploadTempDir="file/upload">
     </bean>
+
     <!-- 配置拦截器 -->
     <mvc:interceptors>
         <mvc:interceptor>

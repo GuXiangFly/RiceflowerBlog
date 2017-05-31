@@ -16,8 +16,8 @@ import java.util.List;
 public interface IArticleDao {
 
 	/**
-	 * 插入文章信息（待编写sql实现）
-	 * 
+	 * 插入文章信息
+	 *
 	 * @param article
 	 *            文章信息（title,summary,content,categoryIds,tagIds,status,writeTime
 	 *            ,pubTime）

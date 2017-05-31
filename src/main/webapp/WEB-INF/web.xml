@@ -51,7 +51,7 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <!-- 静态资源放行,注意不能有和controller层的url相同的配置，因此可以配后缀 -->
+    <!-- 静态资源放行 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.html</url-pattern>

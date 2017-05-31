@@ -51,6 +51,38 @@ public class ManageController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/manage/login", method = {RequestMethod.POST})
+    public CommonResult login(@RequestBody AuthorVo authorVo,
+                               HttpServletRequest request) {
+
+        String resultData = "";
+        String message = null;
+        boolean isSuccess = true;
+        CommonResult commonResult;
+        try {
+                resultData = userService.signInCheck(authorVo, request);
+                if(resultData==null){
+                    isSuccess = false;
+                    message="用户名或密码不正确";
+                }
+
+        } catch (Exception e) {
+            message = e.getMessage();
+            isSuccess = false;
+        } finally {
+            if (isSuccess) {
+                commonResult = new CommonResult(CommonConstant.SUCCESS_CODE,
+                        message, resultData);
+            } else {
+                commonResult = new CommonResult(CommonConstant.FAIL_CODE,
+                        message);
+            }
+        }
+        return commonResult;
+    }
+
+
+    @ResponseBody
     @RequestMapping(value = "/manage/signin", method = {RequestMethod.POST})
     public CommonResult signin(@RequestBody AuthorVo authorVo,
                                HttpServletRequest request) {

@@ -15,20 +15,20 @@ import org.springframework.web.context.WebApplicationContext;
 @RunWith(SpringJUnit4ClassRunner.class)
 //测试环境使用，用来表示测试环境使用的ApplicationContext将是WebApplicationContext类型的；value指定web应用的根；
 @WebAppConfiguration
-@ContextConfiguration(locations = { "classpath*:config/**/spring-mvc.xml",
-		"classpath*:config/**/applicationContext.xml"})
+@ContextConfiguration(locations = {"classpath*:config/**/spring-mvc.xml",
+        "classpath*:config/**/applicationContext.xml"})
 // 配置事务的回滚,对数据库的增删改都会回滚,便于测试用例的循环利用
 @TransactionConfiguration(transactionManager = "transactionManager", defaultRollback = true)
 @Transactional
 public class BaseControlTest {
-	protected MockMvc mockMvc;
+    protected MockMvc mockMvc;
 
-	@Autowired
-	protected WebApplicationContext wac;
+    @Autowired
+    protected WebApplicationContext wac;
 
-	@Before()
-	// 这个方法在每个方法执行之前都会执行一遍
-	public void setup() {
-		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build(); // 初始化MockMvc对象
-	}
+    @Before()
+    // 这个方法在每个方法执行之前都会执行一遍
+    public void setup() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(wac).build(); // 初始化MockMvc对象
+    }
 }

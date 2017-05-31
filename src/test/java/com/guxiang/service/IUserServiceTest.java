@@ -31,6 +31,7 @@ public class IUserServiceTest extends BaseTest {
         methodName=new Throwable().getStackTrace()[0].getMethodName();
         printResultStr(methodName, null,result);
     }
+
     @Test
     public void testEditAuthorsStatus(){
         Boolean result = userService.authorsEditStatus(1, 0);
@@ -47,14 +48,14 @@ public class IUserServiceTest extends BaseTest {
 
     @Test
     public void testGetAuthorsByAccount() throws Exception {
-        Authors result = userService.authorsGetByAccount("panhainan");
+        Authors result = userService.authorsGetByAccount("guxiangfly");
         methodName=new Throwable().getStackTrace()[0].getMethodName();
         printResultStr(methodName, null,result);
     }
 
     @Test
     public void testGetAuthorsByEmail() throws Exception {
-        Authors result = userService.authorsGetByEmail("panhainan@yeah.net");
+        Authors result = userService.authorsGetByEmail("guxiangfly@gmail.com");
         methodName=new Throwable().getStackTrace()[0].getMethodName();
         printResultStr(methodName, null,result);
     }

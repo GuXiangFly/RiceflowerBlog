@@ -2,8 +2,7 @@ package com.guxiang.util;
 
 /**
  * 令牌管理器
- * @author Fire.Pan.
- * @email panhainan@yeah.net
+ * @author guxiang
  * @date 2016年4月6日
  */
 public interface TokenManagerUtil {

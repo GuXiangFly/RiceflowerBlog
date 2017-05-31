@@ -60,6 +60,9 @@ app.config(function($routeProvider,$locationProvider) {
 		controller : 'ArticleDetailController'
 	}).when("/404",{
         templateUrl : "modules/common/404.view.html"
+    }).when("/blog/article/:articleCode", {
+        templateUrl : "modules/blog/article/article.detail.view.html",
+        controller : 'ArticleDetailController'
     });
 	// 管理
     //管理入口为/manage，需要输入用户名密码登录

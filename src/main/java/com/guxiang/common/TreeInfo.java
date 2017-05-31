@@ -1,5 +1,8 @@
 package com.guxiang.common;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 实现类向TreeInfoResult类转换需要继承此类
  */
@@ -15,11 +18,12 @@ public class TreeInfo {
         this.id = id;
     }
 
-    public Integer getParentId() {
+    public  Integer getParentId() {
         return parentId;
     }
 
-    public void setParentId(Integer parentId) {
+    public  void setParentId(Integer parentId) {
         this.parentId = parentId;
     }
+
 }
