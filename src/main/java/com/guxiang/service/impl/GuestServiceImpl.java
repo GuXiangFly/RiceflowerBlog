@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by 刘俊  .
+ * Created by guxinag  .
  */
 @Service("guestService")
 public class GuestServiceImpl implements IGuestService{
