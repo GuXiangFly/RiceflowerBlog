@@ -54,6 +54,16 @@
     </bean>-->
 	<!-- ==================================MyBatis end================================== -->
 
+	<!--jdbcTemplate的配置-->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+
+	<!--sqlDao的配置-->
+	<bean id="sqlDao" class="com.guxiang.springdao.SqlDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+
 	<!-- data source -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
