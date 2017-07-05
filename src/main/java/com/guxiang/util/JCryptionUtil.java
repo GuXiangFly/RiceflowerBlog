@@ -17,14 +17,10 @@ public class JCryptionUtil {
         java.security.Security.addProvider(provider);  
     }  
   
-    /** 
-     * Generates the Keypair with the given keyLength. 
-     *  
+    /**
      * @param keyLength 
      *            length of key 
-     * @return KeyPair object 
-     * @throws RuntimeException
-     *             if the RSA algorithm not supported 
+     * @return KeyPair object
      */  
     public KeyPair generateKeypair(int keyLength) throws Exception {
         try {  
@@ -44,11 +40,7 @@ public class JCryptionUtil {
         }  
     }  
   
-    /** 
-     * Decrypts a given string with the RSA keys 
-     *  
-     * @param encrypted 
-     *            full encrypted text 
+    /**
      * @param keys 
      *            RSA keys 
      * @return decrypted text 
