@@ -1,8 +1,0 @@
-@CHARSET "UTF-8";
-#manage-body-content {
-	padding: 0;
-	-webkit-transition: width 0.3s ease;
-	-moz-transition: width 0.3s ease;
-	-o-transition: width 0.3s ease;
-	transition: width 0.3s ease;
-}
