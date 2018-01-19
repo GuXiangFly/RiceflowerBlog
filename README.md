@@ -1,6 +1,6 @@
 版本变迁
 ====
-此项目原为 SSM 项目 现在更改为 springboot + mybatis 的项目
+此项目原为 SSM 项目 现在更改为 springboot + mybatis + Angularjs 的项目
 原有SSM 项目 迁移到 Version1.0  ![点击查看](https://github.com/GuXiangFly/RiceflowerBlog/tree/version1.0)
 
 1简介
@@ -46,9 +46,9 @@
 1.3开发技术
 -----------
 
-整个项目后台架构使用的技术是 SpringMVC + Spring + mybatis，整个项目基于maven实现。数据库使用的是mysql，使用了阿里巴巴的连接池Druid。
+整个项目后台架构使用的技术是 SpringBoot + mybatis,数据库mysql。
 
-在前端我们使用的是Angularjs+bootstrap 实现界面简洁优美的响应式布局。使用restful风格+json数据交互
+在前端使用的是Angularjs+bootstrap 实现界面简洁优美的响应式布局。使用restful风格+json数据交互
 实现前后台功能的分离。
 
 整个网站拥有的功能有，写博客，博客分类，用户评论，友情链接，博主信息管理，其中包括增删改查的操作。
