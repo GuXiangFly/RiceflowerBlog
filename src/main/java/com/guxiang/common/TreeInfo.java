@@ -1,8 +1,5 @@
 package com.guxiang.common;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 实现类向TreeInfoResult类转换需要继承此类
  */

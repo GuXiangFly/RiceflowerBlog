@@ -39,7 +39,7 @@ body {
 	-o-background-size: cover;
 	-moz-background-size: cover;
 	-ms-background-size: cover;
-    background: url(../images/banner.jpg)no-repeat 0px 0px fixed;
+    background: url(../../../../../../../点餐教程/foodsellsystem/src/main/resources/static/images/banner.jpg)no-repeat 0px 0px fixed;
 	background-size: cover;
 	text-align: center;
 }

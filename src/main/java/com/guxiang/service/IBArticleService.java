@@ -1,7 +1,7 @@
 package com.guxiang.service;
 
-import com.guxiang.common.PageConfig;
-import com.guxiang.common.PageInfoResult;
+import cn.guxiangfly.riceflowerblog.common.PageConfig;
+import cn.guxiangfly.riceflowerblog.common.PageInfoResult;
 import com.guxiang.pojo.Article;
 import com.guxiang.vo.ArchiveVo;
 import com.guxiang.vo.ArticleVo;

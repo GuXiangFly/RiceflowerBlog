@@ -2,12 +2,12 @@ package com.guxiang.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.guxiang.common.CommonConstant;
-import com.guxiang.common.TreeInfoResult;
-import com.guxiang.common.TreeInfoUtil;
-import com.guxiang.dao.IArticleDao;
-import com.guxiang.dao.IGuestDao;
-import com.guxiang.dao.IMessageDao;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.common.TreeInfoResult;
+import cn.guxiangfly.riceflowerblog.common.TreeInfoUtil;
+import cn.guxiangfly.riceflowerblog.dao.IArticleDao;
+import cn.guxiangfly.riceflowerblog.dao.IGuestDao;
+import cn.guxiangfly.riceflowerblog.dao.IMessageDao;
 import com.guxiang.pojo.Article;
 import com.guxiang.pojo.Guest;
 import com.guxiang.pojo.Message;

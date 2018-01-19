@@ -6,8 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.guxiang.common.CommonConstant;
-import com.guxiang.common.CommonResult;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.common.CommonResult;
 import com.guxiang.pojo.Guest;
 import com.guxiang.service.IGuestService;
 

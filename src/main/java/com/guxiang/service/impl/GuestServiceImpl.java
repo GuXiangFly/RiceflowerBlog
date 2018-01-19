@@ -2,7 +2,7 @@ package com.guxiang.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.guxiang.dao.IGuestDao;
+import cn.guxiangfly.riceflowerblog.dao.IGuestDao;
 import com.guxiang.pojo.Guest;
 import com.guxiang.service.IGuestService;
 

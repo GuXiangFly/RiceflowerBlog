@@ -1,7 +1,7 @@
 package com.guxiang.pojo;
 
-import com.guxiang.common.CommonConstant;
-import com.guxiang.common.TreeInfo;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.common.TreeInfo;
 
 import java.util.Date;
 

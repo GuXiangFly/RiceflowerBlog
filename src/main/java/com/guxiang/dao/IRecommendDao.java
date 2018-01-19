@@ -1,9 +1,9 @@
 package com.guxiang.dao;
 
+import cn.guxiangfly.riceflowerblog.common.PageConfig;
+import com.guxiang.pojo.Recommend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-import com.guxiang.common.PageConfig;
-import com.guxiang.pojo.Recommend;
 
 import java.util.List;
 

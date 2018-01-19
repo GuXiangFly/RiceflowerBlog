@@ -46,7 +46,7 @@
     </bean>
     <!-- 该方式用来注入dao或者mapper接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.guxiang.dao" />
+        <property name="basePackage" value="cn.guxiangfly.riceflowerblog.dao" />
     </bean>
     <!-- 该方式用来注入dao 实现类 -->
    <!-- <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate" scope="prototype">

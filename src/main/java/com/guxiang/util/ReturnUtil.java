@@ -1,6 +1,6 @@
 package com.guxiang.util;
 
-import com.guxiang.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
 
 /**
  * Created by guxiang  .

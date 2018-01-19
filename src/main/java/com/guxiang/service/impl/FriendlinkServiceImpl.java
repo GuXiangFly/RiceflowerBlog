@@ -2,9 +2,9 @@ package com.guxiang.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.guxiang.common.PageConfig;
-import com.guxiang.common.PageInfoResult;
-import com.guxiang.dao.IFriendDao;
+import cn.guxiangfly.riceflowerblog.common.PageConfig;
+import cn.guxiangfly.riceflowerblog.common.PageInfoResult;
+import cn.guxiangfly.riceflowerblog.dao.IFriendDao;
 import com.guxiang.pojo.Friendlink;
 import com.guxiang.service.IFriendlinkService;
 import com.guxiang.util.ReturnUtil;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.guxiang.dao.IAuthorsDao">
+<mapper namespace="cn.guxiangfly.riceflowerblog.dao.IAuthorsDao">
 
 	<resultMap id="AuthorsMap" type="com.guxiang.pojo.Authors">
 		<result property="id" column="id" />

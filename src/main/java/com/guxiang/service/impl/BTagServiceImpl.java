@@ -2,8 +2,8 @@ package com.guxiang.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.guxiang.dao.IArticleDao;
-import com.guxiang.dao.ITagDao;
+import cn.guxiangfly.riceflowerblog.dao.IArticleDao;
+import cn.guxiangfly.riceflowerblog.dao.ITagDao;
 import com.guxiang.pojo.Article;
 import com.guxiang.pojo.Tag;
 import com.guxiang.service.IBTagService;

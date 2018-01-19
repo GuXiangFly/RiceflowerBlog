@@ -1,7 +1,7 @@
 package com.guxiang.pojo;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import com.guxiang.common.TreeInfo;
+import cn.guxiangfly.riceflowerblog.common.TreeInfo;
 
 /**
  * Created by guxinag  .

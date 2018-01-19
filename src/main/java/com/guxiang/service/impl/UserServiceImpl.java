@@ -3,7 +3,7 @@ package com.guxiang.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.guxiang.dao.IAuthorsDao;
+import cn.guxiangfly.riceflowerblog.dao.IAuthorsDao;
 import com.guxiang.pojo.Authors;
 import com.guxiang.service.IUserService;
 import com.guxiang.util.CookieUtil;

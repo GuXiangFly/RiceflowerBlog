@@ -1,9 +1,9 @@
 package com.guxiang.dao;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 import com.guxiang.pojo.Message;
 import com.guxiang.vo.ArticleMessageVo;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

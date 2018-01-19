@@ -2,9 +2,9 @@ package com.guxiang.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.guxiang.common.CommonConstant;
-import com.guxiang.dao.IArticleDao;
-import com.guxiang.dao.ICategoryDao;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.dao.IArticleDao;
+import cn.guxiangfly.riceflowerblog.dao.ICategoryDao;
 import com.guxiang.pojo.Category;
 import com.guxiang.service.IBCategoryService;
 import com.guxiang.util.ReturnUtil;

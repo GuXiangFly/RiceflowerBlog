@@ -1,9 +1,9 @@
 package com.guxiang.controller;
 
-import com.guxiang.common.CommonConstant;
-import com.guxiang.common.CommonResult;
-import com.guxiang.common.PageConfig;
-import com.guxiang.common.PageInfoResult;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.common.CommonResult;
+import cn.guxiangfly.riceflowerblog.common.PageConfig;
+import cn.guxiangfly.riceflowerblog.common.PageInfoResult;
 import com.guxiang.pojo.Article;
 import com.guxiang.service.IBArticleService;
 import com.guxiang.service.IMessageService;

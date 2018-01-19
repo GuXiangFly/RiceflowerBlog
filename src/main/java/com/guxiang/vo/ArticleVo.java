@@ -1,6 +1,6 @@
 package com.guxiang.vo;
 
-import com.guxiang.common.CommonConstant;
+import cn.guxiangfly.riceflowerblog.common.CommonConstant;
 import com.guxiang.pojo.Article;
 
 public class ArticleVo extends Article {
