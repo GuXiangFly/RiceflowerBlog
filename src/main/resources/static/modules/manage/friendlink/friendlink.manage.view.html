@@ -1,0 +1,213 @@
+<div class="customContainer">
+	<div class="row">
+		<div id="manage-sub-nav">
+			<ng-include src="'modules/manage/manage-left-sub-nav.html'"></ng-include>
+		</div>
+		<div class="manage-margin_left_sub_nav_width" id="manage-body-content">
+			<div class="manage-toggle-sidebar-div">
+				<a class="btn btn-primary btn-md manage-toggle-sidebar" ><span
+					class="glyphicon glyphicon-chevron-left" id="manage-close-open-icon"></span></a>
+			</div>
+			<div class="manage-body-content-body">
+				<div class=" panel panel-default">
+					<div class="panel-heading" style="padding-bottom:0;padding-left: 30px;height: 50px;">
+						<h3 class="panel-title font_kaiti_20">
+							友链管理<span style="font-size: 12px">(共{{totalItems}}条记录)</span> <a
+                                type="button" ng-click="addFriendlink()"
+                                class="btn btn-sm btn-primary" style="float: right;color: #fff">添加</a>
+						</h3>
+					</div>
+					<div class="panel-body " style="min-height: 440px">
+						<div class="table-responsive tableTrBottomBorder">
+							<table class="table  table-hover">
+								<thead>
+									<tr class="border_bottom">
+										<td>#</td>
+										<td>网站名称</td>
+										<td>URL</td>
+                                        <td class="hidden-xs">优先级</td>
+                                        <td>点击量</td>
+                                        <td class="hidden-xs hidden-sm hidden-md">添加时间</td>
+										<td>操作</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="friendlink in friendlinks">
+										<td>{{totalItems-(currentPage-1)*pageSize-$index}}</td>
+										<td>{{friendlink.name}}</td>
+										<td><a href="{{friendlink.website}}"
+                                               title="点击访问" target="_blank">{{friendlink.website}}</a></td>
+										<td class="hidden-xs">{{friendlink.priority}}</td>
+                                        <td>{{friendlink.hits}}</td>
+										<td class="hidden-xs hidden-sm hidden-md">{{friendlink.addTime | date
+											:'yyyy-MM-dd'}}</td>
+										<td>
+											<a class="btn btn-xs btn-info" style="margin-right:8px"  ng-click="previewFriendlink(friendlink)" title="点击查看">查看</a>
+                                             <a class="btn btn-xs btn-warning" style="margin-right:8px"
+                                                                          ng-click="setEditFriendlink(friendlink)">编辑</a>
+											<a class="btn btn-xs btn-danger"	ng-click="setDeleteFriendlink(friendlink)">删除</a>
+
+		
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel-footer" style="text-align: center">
+						<!--style="padding: 0;"-->
+						<!--style="margin: 5px 0 0 0;"-->
+						<ul uib-pagination total-items="totalItems" max-size="5"
+							boundary-link-numbers="true" items-per-page="pageSize"
+							ng-model="currentPage" ng-change="pageChanged()"
+							class="pagination_border_radius_0"></ul>
+					</div>
+                    <script type="text/ng-template" id="previewFriendlink.html">
+                        <div class="modal-header">
+                            <h4 class="modal-title">查看详情</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-addon">名称</span>
+                                <span class="form-control">{{friendlink.name}}</span>
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">URL</span>
+                                <span class="form-control">{{friendlink.website}}</span>
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">作者</span>
+                                <span class="form-control">{{friendlink.webAuthorName}}</span>
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">邮箱</span>
+                                <span class="form-control">{{friendlink.webAuthorEmail}}</span>
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">优先</span>
+                                <span class="form-control">{{friendlink.priority}}</span>
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">介绍</span>
+                                <textarea rows="4" readonly style="border: 1px solid #ccc;width: 100%;resize: none;padding:10px;" class="form-control">{{friendlink.description}}</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" ng-click="closeFriendlink()"
+                                    >关闭
+                            </button>
+                        </div>
+                    </script>
+                    <script type="text/ng-template" id="addFriendlink.html">
+                        <div class="modal-header">
+                            <h4 class="modal-title">添加</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-addon">名称</span>
+                                <input type="text" ng-model="friendlink.name" class="form-control" placeholder="名称">
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">URL</span>
+                                <input type="url" ng-model="friendlink.website" class="form-control" placeholder="URL">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">作者</span>
+                                <input type="text" ng-model="friendlink.webAuthorName" class="form-control" placeholder="作者">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">邮箱</span>
+                                <input type="email" ng-model="friendlink.webAuthorEmail" class="form-control" placeholder="邮箱">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">优先</span>
+                                <input type="number" maxlength="2" ng-model="friendlink.priority" class="form-control" placeholder="优先级">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">介绍</span>
+                                <textarea name="description" class="form-control" placeholder="介绍" style="border: 1px solid #ccc;width: 100%;resize: none;padding:10px;" rows="4" ng-model="friendlink.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" ng-click="cancelAddFriendlink()"
+                                    >取消
+                            </button>
+                            <button type="button" ng-click="confirmAddFriendlink(friendlink)"
+                                    class="btn btn-success">确认
+                            </button>
+                        </div>
+                    </script>
+                    <script type="text/ng-template" id="editFriendlink.html">
+                        <div class="modal-header">
+                            <h4 class="modal-title">修改</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span class="input-group-addon">名称</span>
+                                <input type="text" ng-model="friendlink.name" class="form-control" placeholder="名称">
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">URL</span>
+                                <input type="url" ng-model="friendlink.website" class="form-control" placeholder="URL">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">作者</span>
+                                <input type="text" ng-model="friendlink.webAuthorName" class="form-control" placeholder="作者">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">邮箱</span>
+                                <input type="email" ng-model="friendlink.webAuthorEmail" class="form-control" placeholder="邮箱">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">优先</span>
+                                <input type="number" maxlength="2" ng-model="friendlink.priority" class="form-control" placeholder="优先级">
+                            </div><br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">介绍</span>
+                                <textarea name="description" class="form-control" placeholder="介绍" style="border: 1px solid #ccc;width: 100%;resize: none;padding:10px;" rows="4" ng-model="friendlink.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" ng-click="cancelEditFriendlink()"
+                                    >取消
+                            </button>
+                            <button type="button" ng-click="confirmEditFriendlink(friendlink)"
+                                    class="btn btn-success">确认
+                            </button>
+                        </div>
+                    </script>
+                    <script type="text/ng-template" id="deleteFriendlink.html">
+                        <div class="modal-header">
+                            <h4 class="modal-title">警告</h4>
+                        </div>
+                        <div class="modal-body">
+                            确认删除友情链接 <a href="{{friendlink.website}}" target="_blank"><span style="font-size:16px;font-weight:bolder;"> {{friendlink.name}} </span> </a>吗？
+                            <p>介绍：{{friendlink.description}}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" ng-click="cancelDeleteFriendlink()"
+                                    >取消
+                            </button>
+                            <button type="button" ng-click="deleteFriendlink(friendlink.id)"
+                                    class="btn btn-danger">确认
+                            </button>
+                        </div>
+                    </script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+		$(".manage-toggle-sidebar").click(function() {
+			$("#manage-sub-nav").toggleClass("collapsed");
+			$("#manage-body-content").toggleClass("col-sm-12  manage-margin_left_sub_nav_width");
+			$("#manage-close-open-icon").toggleClass("glyphicon-chevron-right");
+			return false;
+		});
+	});
+</script>

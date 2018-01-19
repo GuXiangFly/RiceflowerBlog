@@ -1,0 +1,64 @@
+<div class="customContainer">
+	<div class="row">
+		<div class="col-md-2 col-lg-3"></div>
+		<div class="col-sm-12 col-md-8 col-lg-6">
+			<div class="row">
+				<div style="height: 80px"></div>
+				<div>
+					<form class="form-horizontal" action="javascript:void(0)"
+						ng-submit="signin()" novalidate>
+						<div class="panel panel-default">
+							<div class="panel-heading" style="text-align: center;background-color: #F2F2F2">
+								<h4 class="modal-title" id="signInModalLabel">登&emsp;&emsp;&emsp;&emsp;录
+								</h4>
+							</div>
+							<div class="panel-body">
+								<br />
+								<div class="form-group">
+									<label class="control-label col-sm-2" for="account">账  户:</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control"
+											ng-model="user.account" name="account" id="account"
+											placeholder="请输入账户名">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-sm-2 " for="pwd">密  码:</label>
+									<div class="col-sm-9">
+										<input type="password" class="form-control"
+											ng-model="user.password" name="password" id="pwd"
+											placeholder="请输入账户密码">
+									</div>
+								</div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2 " for="pwd">验证码:</label>
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control"
+                                               ng-model="user.captcha" name="captcha" id="captcha"
+                                               placeholder="请输入验证码">
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <img ng-disabled="logining"
+                                             src="/manage/getCaptcha" id="imgValidateCode"
+                                             title="看不清？点击更换！" alt="点击换一张！"/>
+                                    </div>
+                                    <div class="col-sm-1" style="padding-left: 0px;padding-top: 3px">
+                                        <span style="padding:0;cursor: pointer;color:gray" title="换一张" ng-click="refreshCode()" class="btn-lg glyphicon glyphicon-refresh"></span>
+                                    </div>
+                                </div>
+								<div class=" col-sm-offset-2 col-sm-9"
+									style="padding:0px;">
+									<button type="submit" class="btn btn-primary btn-block"
+										style="margin:auto 0px;">登 录</button>
+								</div>
+								<br /> <br /> <br />
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="plugins/jquery-jcryption/jquery.jcryption-1.1.js"></script>
+<script src="plugins/jquery-jcryption/fo-jcryption-gen-keys.js"></script>

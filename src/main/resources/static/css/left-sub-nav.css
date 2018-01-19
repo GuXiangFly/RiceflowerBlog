@@ -1,0 +1,155 @@
+@CHARSET "UTF-8";
+
+#sub-nav {
+	/* padding: 0px; */
+	background-color: #fff;
+	position: fixed;
+	height: 100%;
+	top: 0;
+	overflow-y: auto;
+	width: 160px; -webkit-transition : margin 0.3s ease;
+	-moz-transition: margin 0.3s ease;
+	-o-transition: margin 0.3s ease;
+	transition: margin 0.3s ease;
+	-webkit-transition: margin 0.3s ease;
+}
+/* 值等于sub-nav的宽度 */
+.margin_left_sub_nav_width {
+	margin-left: 160px;
+}
+
+.collapsed {
+	/* hide it for small displays*/
+	display: none;
+}
+
+@media ( min-width : 992px) {
+	.collapsed {
+		display: block;
+		/* same width as sidebar */
+		margin-left: -25%;
+	}
+}
+
+.toggle-sidebar-div {
+	background-color: #E5E5E5;
+	position: fixed;
+	top: 45%;
+	z-index: 100;
+	width: 20px;
+	height: 100px;
+}
+
+.toggle-sidebar-div a {
+	text-decoration: none;
+	background-color: #E5E5E5;
+	display: block;
+	padding: 0;
+}
+
+.toggle-sidebar-div a span {
+	color: #337AB7;
+	padding-top: 40px;
+	padding-left: 2px;
+	width: 30px;
+	height: 100px;
+	display: block;
+}
+
+.toggle-sidebar {
+	border: 0;
+	margin: 0;
+}
+
+#close-open-icon {
+	-webkit-transition: width 0.3s ease;
+	-moz-transition: width 0.3s ease;
+	-o-transition: width 0.3s ease;
+	transition: width 0.3s ease;
+}
+
+.sub-nav-header {
+	font: 15px/1.5 "楷体", "Arial", "Helvetica Neue", Helvetica,
+		"Hiragino Sans GB", "STHeiti", "WenQuanYi Micro Hei",
+		"Microsoft Yahei", sans-serif;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-bottom: 1px #EBEBEB dashed;
+}
+
+.sub-nav-parent-item {
+	padding-left: 0px;
+	margin: 0;
+	line-height: 20px;
+	width: 100%;
+	text-indent: 10px;
+}
+
+.sub-nav-parent-item span {
+	height: 20px;
+	width: 100%;
+	display: block;
+	color: #fff; 
+	border-bottom: 1px #EBEBEB solid;
+	background-color: #000;
+}
+
+.sub-nav-body{
+	height:500px;
+	overflow-y: auto;
+	padding-bottom: 160px;
+}
+
+.sub-nav-body ul {
+	margin: 0;
+}
+
+.sub-nav-body ul li {
+	padding-left: 0px;
+	height: 40px;
+	width: 100%;
+	text-indent: 10px;
+	border-bottom: 1px #EBEBEB dashed;
+}
+
+.sub-nav-body ul li a {
+	padding-left: 8px;
+	height: 40px;
+	line-height: 42px;
+	float: left;
+	color: #8D8D8D;
+	font-size: 14px;
+	text-decoration: none;
+	display: inline-block;
+	text-overflow: ellipsis; /*这就是省略号喽*/
+	overflow: hidden; /*设置超过的隐藏*/
+	white-space: nowrap; /*设置不折行*/
+	width: 100%; /*设置宽度*/
+}
+
+.sub-nav-body ul li a:hover {
+	color: #000;
+	background-color: #EBEBEB;
+	text-decoration: none;
+}
+
+@media ( max-width : 768px) {
+	.margin_left_sub_nav_width {
+		margin-left: 100px;
+	}
+	#sub-nav {
+		width: 100px;
+	}
+	#sub-nav {
+		position: fixed;
+		top: 55px;
+	}
+	.toggle-sidebar-div {
+		position: fixed;
+		top: 45%;
+	}
+	.sub-nav-body ul li {
+		text-indent: 0px;
+	}
+}

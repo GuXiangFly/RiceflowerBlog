@@ -1,0 +1,92 @@
+<div class="customContainer">
+	<div class="row">
+		<div id="manage-sub-nav">
+			<ng-include src="'modules/manage/manage-left-sub-nav.html'"></ng-include>
+		</div>
+		<div class="manage-margin_left_sub_nav_width" id="manage-body-content">
+			<div class="manage-toggle-sidebar-div">
+				<a class="btn btn-primary btn-md manage-toggle-sidebar" ><span
+					class="glyphicon glyphicon-chevron-left" id="manage-close-open-icon"></span></a>
+			</div>
+			<div class="manage-body-content-body">
+				<div class=" panel panel-default">
+					<div class="panel-heading" style="padding-bottom:0;padding-left: 30px;height: 50px;">
+						<h3 class="panel-title font_kaiti_20">
+							文章管理<span style="font-size: 12px">(共{{totalItems}}条记录)</span> <a
+								type="button" href="#!/manage/article/new"
+								class="btn btn-sm btn-primary" style="float: right;color: #fff">新
+								建</a>
+						</h3>
+					</div>
+					<div class="panel-body " style="min-height: 440px">
+						<div class="table-responsive tableTrBottomBorder">
+							<table class="table  table-hover">
+								<thead>
+									<tr class="border_bottom">
+										<td>#</td>
+										<td>标题</td>
+										<td class="visible-lg">类别</td>
+										<td>状态</td>
+										<td class="visible-lg">撰写时间</td>
+										<!-- <td>发布时间</td> -->
+										<td>操作</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="article in articles">
+										<td>{{totalItems-(currentPage-1)*pageSize-$index}}</td>
+										<td>{{article.title}}</td>
+										<td class="visible-lg">{{article.categoryName}}</td>
+										<td><span ng-if="article.status==1">博客</span><span
+											ng-if="article.status==0" style="color:red">草稿</span></td>
+										<td class="visible-lg">{{article.writeTime | date
+											:'yyyy-MM-dd'}}</td>
+										<!-- <td>{{article.pubTime | date :'yyyy-MM-dd HH:ss'}}</td> -->
+										<td>
+											<a class="btn btn-xs btn-info" style="margin-right:10px;" href="#!/manage/article/preview/{{article.id}}"
+											>预览</a><a class="btn btn-xs btn-warning" style="margin-right:10px;"
+													href="#!/manage/article/edit/{{article.id}}">编辑</a><a class="btn btn-xs btn-danger"
+													 style="margin-right:10px;" ng-click="setDeleteArticle(article)">删除</a></li>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="panel-footer" style="text-align: center">
+						<!--style="padding: 0;"-->
+						<!--style="margin: 5px 0 0 0;"-->
+						<ul uib-pagination total-items="totalItems" max-size="5"
+							boundary-link-numbers="true" items-per-page="pageSize"
+							ng-model="currentPage" ng-change="pageChanged()"
+							class="pagination_border_radius_0"></ul>
+					</div>
+					<script type="text/ng-template" id="deleteArticle.html">
+						<div class="modal-header">
+							<h4 class="modal-title" id="modal-title">警告</h4>
+						</div>
+						<div class="modal-body" id="modal-body">
+							确认删除博客<span style="font-size:16px;font-weight:bolder;"> {{theDeleteArticle.title}} </span>吗？
+						</div>		
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" ng-click="cancelDeleteArticle()"
+								>取消</button>
+							<button type="button" ng-click="deleteArticle(theDeleteArticle.id)"
+								 class="btn btn-danger">确认</button>
+						</div>
+					</script>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+		$(".manage-toggle-sidebar").click(function() {
+			$("#manage-sub-nav").toggleClass("collapsed");
+			$("#manage-body-content").toggleClass("col-sm-12  manage-margin_left_sub_nav_width");
+			$("#manage-close-open-icon").toggleClass("glyphicon-chevron-right");
+			return false;
+		});
+	});
+</script>

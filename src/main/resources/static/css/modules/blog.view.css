@@ -1,0 +1,166 @@
+@CHARSET "UTF-8";
+.blog-body{
+    padding:15px 8px;
+}
+
+#body-content {
+	padding: 0;
+	-webkit-transition: width 0.3s ease;
+	-moz-transition: width 0.3s ease;
+	-o-transition: width 0.3s ease;
+	transition: width 0.3s ease;
+}
+.body-blog-body{
+    margin: 0 10px;
+}
+.body-content-body {
+	padding: 20px 10px 10px 10px;
+	margin: 0 5px;
+}
+.article {
+    padding: 10px 40px 30px 40px;
+    background-color: #fff;
+    /* min-height: 600px; */
+    height: 100%;
+    /*border: 1px solid #E6E6E6;*/
+}
+
+
+
+.article-header {
+	/* padding-top:10px; */
+	/* height: 90px; */
+	/*border-bottom: 2px solid #EBEBEB;*/
+}
+
+.article-body {
+	padding-top: 0px;
+	font-size: 15px;
+}
+
+.article-body .summary {
+    border-top: 1px solid silver;
+    border-bottom: 1px solid silver;
+	/*background-color: #F7F9F7;*/
+    color: #000;
+	padding: 10px;
+}
+.article-body .summary a{
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.article-body .tag {
+	background-color: #DADADA;
+	font-size: 14px;
+	padding: 2px 4px;
+	margin: 0 8px 0 0;
+}
+
+.pre {
+	background-color: #fff;
+	padding: 13px 20px 7px 35px;
+	border-bottom: 1px #E6E6E6 dashed;
+	font-size: 14px;
+	font-family: "微软雅黑";
+    margin-top: 20px;
+}
+
+.next {
+	background-color: #fff;
+	padding: 10px 20px 10px 35px;
+	font-size: 14px;
+	font-family: "微软雅黑";
+    margin-bottom: 0px;
+}
+
+.article-body .content {
+    font: 16px "Microsoft Yahei","Arial", "Helvetica Neue", Helvetica, "Hiragino Sans GB",
+    "STHeiti", "WenQuanYi Micro Hei",  sans-serif;
+	padding: 20px 0px;
+    line-height: 180%;
+}
+
+.article-body img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.article-footer {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 0px;
+}
+.article-footer .col-xs-12,.article-footer .col-sm-12 {
+    height: 100%;
+    /*margin: 0;*/
+    padding: 0;
+}
+.message-list{
+    padding: 10px 15px 20px 15px;
+    background-color: #fff;
+    /* min-height: 600px; */
+    height: 100%;
+    margin: 20px 0px;
+}
+.message-new{
+    padding: 10px 15px 40px 15px;
+    background-color: #fff;
+    /* min-height: 600px; */
+    height: 100%;
+    margin: 0px 0px 20px 0px;
+}
+.message-header{
+    padding:0 25px;
+}
+.message-header .form-group{
+    margin: 0;
+}
+.message-header label{
+    padding: 0px;
+    margin: 0;
+    line-height: 34px;
+}
+.message-header .form-control{
+    max-width: 400px;
+}
+
+.message-body{
+    margin-bottom: 30px;
+    height: 100%;
+    width: 100%;
+    padding:0 25px;
+}
+.message-card{
+    margin-bottom: 10px;
+    padding: 0;/*10px 15px 25px 15px;*/
+    border: 1px silver solid;
+}
+.message-card p{
+    margin-bottom: 5px;
+}
+.message-guest-name{
+    padding: 5px;
+    background-color: silver;
+}
+@media ( max-width : 768px) {
+    .body-content-body {
+        margin: 0;
+    }
+    .article {
+        padding: 20px;
+    }
+    .pre {
+        padding: 13px 20px 7px 20px;
+    }
+
+    .next {
+        padding: 10px 20px 10px 20px;
+    }
+    .message-body{
+        padding:0 5px;
+    }
+    .message-header{
+        padding:0 5px;
+    }
+}
