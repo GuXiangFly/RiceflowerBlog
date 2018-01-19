@@ -1,7 +1,7 @@
 版本变迁
 ====
-此项目原为 SSM 项目 现在更改为 springboot + mybatis + Angularjs 的项目
-原有SSM 项目 迁移到 Version1.0  ![点击查看](https://github.com/GuXiangFly/RiceflowerBlog/tree/version1.0)
+此项目原为 SSM 项目 现在更改为 springboot + mybatis + Angularjs 的项目   
+原有SSM 项目 迁移到 Version1.0 您可以在此点击查看 ![点击查看](https://github.com/GuXiangFly/RiceflowerBlog/tree/version1.0)
 
 1简介
 =====
