@@ -18,21 +18,20 @@ import java.util.List;
  *
  */
 @RequestMapping(value = "")
-@Controller
+@RestController
 public class BTagController {
     @Autowired
     private IBTagService iTagService;
     @Autowired
     private IBArticleService iArticleService;
 
-    @ResponseBody
-    @RequestMapping(value = "/blog/tag",method = RequestMethod.GET)
+    @GetMapping(value = "/blog/tag")
     public CommonResult listTags(){
         List<TagVo> listTags = iTagService.getAllVoBy(CommonConstant.ACTICLE_STATUS_BLOG);
         return new CommonResult(CommonConstant.SUCCESS_CODE,"",listTags);
     }
-    @ResponseBody
-    @RequestMapping(value = "/blog/tag/{name:.+}",method = RequestMethod.GET)
+
+    @GetMapping(value = "/blog/tag/{name:.+}")
     public CommonResult listTagArticle(@PathVariable("name")String name){
         List<ArticleVo> listArticles = iArticleService.getAllByTagName(name);
         return new CommonResult(CommonConstant.SUCCESS_CODE,"",listArticles);

@@ -20,20 +20,20 @@ import java.util.Map;
 
 
 @RequestMapping(value = "")
-@Controller
+@RestController
 public class BCategoryController {
     @Autowired
     private IBCategoryService categoryService;
     @Autowired
     private IBArticleService articleService;
-    @ResponseBody
-    @RequestMapping(value = "/blog/category/{code:.+}",method = RequestMethod.GET)
+
+    @GetMapping(value = "/blog/category/{code:.+}")
     public CommonResult listCategoryArticle(@PathVariable("code")String code){
         Map<String,Object> resultData = articleService.getAllByCategoryCode(code, CommonConstant.CATEGORY_ALL);
         return new CommonResult(CommonConstant.SUCCESS_CODE,"",resultData);
     }
-    @ResponseBody
-    @RequestMapping(value = "/blog/category",method = RequestMethod.GET)
+
+    @GetMapping(value = "/blog/category")
     public CommonResult listCategorys(){
         List<CategoryVo> listCategorys = categoryService.getAllVoBy(CommonConstant.ACTICLE_STATUS_BLOG,CommonConstant.CATEGORY_SHOW);
         return new CommonResult(CommonConstant.SUCCESS_CODE,"",listCategorys);
@@ -43,23 +43,21 @@ public class BCategoryController {
 
 
     /*管理url开始*/
-
-    @ResponseBody
-    @RequestMapping(value = "/manage/category", method = RequestMethod.GET)
+    @GetMapping(value = "/manage/category")
     public CommonResult listMCategorys() {
         List<CategoryVo> listCategorys = categoryService.getAllVoBy(null,CommonConstant.CATEGORY_ALL);
         return new CommonResult(CommonConstant.SUCCESS_CODE, "", listCategorys);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/manage/category/{categoryId}", method = RequestMethod.GET)
+
+    @GetMapping(value = "/manage/category/{categoryId}")
     public CommonResult listCategoryArticles(@PathVariable("categoryId") Integer categoryId) {
         List<Article> listCategoryArticles = articleService.getAllByCategoryId(categoryId, null);
         return new CommonResult(CommonConstant.SUCCESS_CODE, "", listCategoryArticles);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/manage/category", method = RequestMethod.POST)
+
+    @GetMapping(value = "/manage/category")
     public CommonResult addCategory(@RequestBody @Valid Category category,
                                     BindingResult resultValidator) {
         if (resultValidator.hasErrors()) {
@@ -92,8 +90,7 @@ public class BCategoryController {
         }
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/manage/category", method = RequestMethod.PUT)
+    @GetMapping(value = "/manage/category")
     public CommonResult updateCategory(@RequestBody @Valid Category category,
                                        BindingResult resultValidator) {
         if (resultValidator.hasErrors()) {
@@ -126,8 +123,7 @@ public class BCategoryController {
 
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/manage/category/{categoryId}", method = RequestMethod.DELETE)
+    @GetMapping(value = "/manage/category/{categoryId}")
     public CommonResult deleteCategory(@PathVariable("categoryId") Integer categoryId) {
         //这里由于service层又通过id去数据库查询了一次，要不要考虑直接通过前台传对象进来省去查的那次，但是这样又有悖springmvc的rest设计
         Boolean result = categoryService.deleteById(categoryId);

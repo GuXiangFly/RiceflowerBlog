@@ -17,21 +17,21 @@ import java.util.List;
  * Created by guxiang  .
  */
 @RequestMapping(value = "")
-@Controller
+@RestController
 public class FriendlinkController {
 
     @Autowired
     private IFriendlinkService iFriendlinkService;
 
-    @ResponseBody
-    @RequestMapping(value = "/friendlink", method = RequestMethod.GET)
+
+    @GetMapping(value = "/friendlink")
     public CommonResult list() {
         List<Friendlink> list = iFriendlinkService.list();
         return new CommonResult(CommonConstant.SUCCESS_CODE, null, list);
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/friendlink/hits", method = RequestMethod.POST)
+
+    @GetMapping(value = "/friendlink/hits")
     public CommonResult hits(Integer id) {
         iFriendlinkService.hits(id);
         return new CommonResult(CommonConstant.SUCCESS_CODE, null);
@@ -41,15 +41,14 @@ public class FriendlinkController {
 
 
     @ExecuteSecurity
-    @ResponseBody
-    @RequestMapping(value = "/manage/friendlink", method = RequestMethod.POST)
+    @GetMapping(value = "/manage/friendlink")
     public CommonResult pagingList(PageConfig pageConfig) {
         PageInfoResult<Friendlink> list = iFriendlinkService.pagingList(pageConfig);
         return new CommonResult(CommonConstant.SUCCESS_CODE, null, list);
     }
+
     @ExecuteSecurity
-    @ResponseBody
-    @RequestMapping(value = "/manage/friendlink/{fId}", method = RequestMethod.GET)
+    @GetMapping(value = "/manage/friendlink/{fId}")
     public CommonResult get(@PathVariable("fId")int fId) {
         String message= null;
         boolean isSuccess=true;
@@ -68,8 +67,7 @@ public class FriendlinkController {
         }
     }
     @ExecuteSecurity
-    @ResponseBody
-    @RequestMapping(value = "/manage/friendlink/{fId}", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/manage/friendlink/{fId}")
     public CommonResult delete(@PathVariable("fId")int fId) {
         String message= null;
         boolean isSuccess=true;
@@ -89,8 +87,7 @@ public class FriendlinkController {
     }
 
     @ExecuteSecurity
-    @ResponseBody
-    @RequestMapping(value = "/manage/friendlink/save", method = RequestMethod.POST)
+    @PostMapping(value = "/manage/friendlink/save")
     public CommonResult add(@RequestBody Friendlink friendlink) {
         String message= null;
         boolean isSuccess=true;
@@ -109,8 +106,7 @@ public class FriendlinkController {
         }
     }
     @ExecuteSecurity
-    @ResponseBody
-    @RequestMapping(value = "/manage/friendlink/update", method = RequestMethod.PUT)
+    @PutMapping(value = "/manage/friendlink/update")
     public CommonResult update(@RequestBody Friendlink friendlink) {
         String message= null;
         boolean isSuccess=true;
