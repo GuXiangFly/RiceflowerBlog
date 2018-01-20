@@ -1,0 +1,8 @@
+server:
+  port: 80
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://115.159.31.63:3306/riceflowerblog_db?haracterEncoding=utf-8&useSSL=false

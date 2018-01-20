@@ -57,7 +57,7 @@ public class BCategoryController {
     }
 
 
-    @GetMapping(value = "/manage/category")
+    @PostMapping(value = "/manage/category")
     public CommonResult addCategory(@RequestBody @Valid Category category,
                                     BindingResult resultValidator) {
         if (resultValidator.hasErrors()) {
@@ -90,7 +90,7 @@ public class BCategoryController {
         }
     }
 
-    @GetMapping(value = "/manage/category")
+    @PutMapping(value = "/manage/category")
     public CommonResult updateCategory(@RequestBody @Valid Category category,
                                        BindingResult resultValidator) {
         if (resultValidator.hasErrors()) {
@@ -123,7 +123,7 @@ public class BCategoryController {
 
     }
 
-    @GetMapping(value = "/manage/category/{categoryId}")
+    @DeleteMapping(value = "/manage/category/{categoryId}")
     public CommonResult deleteCategory(@PathVariable("categoryId") Integer categoryId) {
         //这里由于service层又通过id去数据库查询了一次，要不要考虑直接通过前台传对象进来省去查的那次，但是这样又有悖springmvc的rest设计
         Boolean result = categoryService.deleteById(categoryId);
