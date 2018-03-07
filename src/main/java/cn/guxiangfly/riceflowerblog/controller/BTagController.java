@@ -37,9 +37,6 @@ public class BTagController {
         return new CommonResult(CommonConstant.SUCCESS_CODE,"",listArticles);
     }
 
-
-
-
     /*管理url开始*/
     @ResponseBody
     @RequestMapping(value = "/manage/tag", method = RequestMethod.GET)
