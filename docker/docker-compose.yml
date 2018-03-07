@@ -6,7 +6,7 @@ mysql:
 
 # 测试时使用
 #  ports:
-#   - 13306:3306
+#   - 23306:3306
 
 riceflower-blog:
   image: blog/riceflower-blog
